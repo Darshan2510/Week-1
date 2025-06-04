@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+
+int n_factorial_r(int n,int r){
+    if(n==r) return 1;
+    if (n<r||n<=0||r<0) return 0;
+    return n_factorial_r(n-1,r-1) + n_factorial_r(n-1,r);
+}
+
+int main(){
+    int n,r;
+    cin>>n>>r;
+    int F= n_factorial_r(n,r)%1000003;
+    cout<<F<<endl;
+
+    return 0;
+}
