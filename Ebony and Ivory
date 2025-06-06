@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+
+int extendedGCD(int a, int b, int &x, int &y) {
+    if (b == 0) {
+        x = 1; y = 0;
+        return a;
+    }
+    int x1, y1;
+    int g = extendedGCD(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - (a / b) * y1;
+    return g;
+}
+
+
+bool canDealExactDamage(int a, int b, int c) {
+    int x, y;
+    int g = extendedGCD(a, b, x, y);
+
+    if (c % g != 0) return false;  
+
+    
+    x *= c / g;
+    y *= c / g;
+
+    
+    int k = b / g;
+    int l = a / g;
+
+    
+    int t1 = (-x + k - 1) / k;
+    
+    int t2 = y / l;
+
+    return t1 <= t2;
+}
+
+int main() {
+    int a, b, c;
+    cin >> a >> b >> c;
+
+    if (canDealExactDamage(a, b, c)) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
+    }
+
+    return 0;
+}
