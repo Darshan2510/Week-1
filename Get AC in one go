@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = a % b;
+        a = b;
+        b = temp;
+    }
+    return a;
+}
+
+int main() {
+    int t;
+    cin>>t;
+    int arr[t][2];
+    for(int i=0;i<t;i++){
+        for(int j=0;j<2;j++){
+            cin>>arr[i][j];
+        }
+    }
+    for(int i=0;i<t;i++){
+
+    if (gcd(arr[i][0], arr[i][1]) != 1) {
+        cout << -1 << endl;
+    } else {
+        int result = arr[i][0] * arr[i][1] - arr[i][0] -arr[i][1] + 1;
+        cout << result << endl;
+    }
+}
+
+    return 0;
+}
